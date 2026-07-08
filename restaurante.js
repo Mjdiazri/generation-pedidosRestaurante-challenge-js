@@ -1,3 +1,4 @@
+const prompt = require("prompt-sync")();
 let nuevoMenu = [];
 let pedido = [];
 const menu = [
@@ -61,12 +62,24 @@ function calcularCuenta(pedido){
   let iva = 0.19;
   let subtotal;
   for(let i =0; i < pedido.length; i++){
-    //if(pedido[i] === nuevoMenu)
+    console.log(pedido[i])
+    for(let j =0; j < nuevoMenu.length; j++){
+      console.log(nuevoMenu[j].nombre)
+      if(pedido[i] === nuevoMenu[j].nombre){
+        console,log("Pedido = menu");
+        subtotal += nuevoMenu[j].precio;
+      }
+    }
   }
-  
-  
+  console.log(subtotal);
+}
 
-
+//RETO 5
+function pedidoAutomatico(){
+  for(let i =0; i < nuevoMenu.length; i++){
+    nuevoMenu[i].id = i + 1;
+  }
+  mostrarMenu(nuevoMenu)
 
 }
 
@@ -83,6 +96,9 @@ tomarPedido("Ensalada César");
 console.log(`\n\nPlatos del pedido: ${pedido}`);
 //Reto 3 - retirar platos
 quitarPedido();
+//Reto 4 - Calcular cuenta
+//calcularCuenta(pedido);
+pedidoAutomatico();
 
 
 
