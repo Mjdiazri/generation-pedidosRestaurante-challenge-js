@@ -1,6 +1,7 @@
 const prompt = require("prompt-sync")();
 let nuevoMenu = [];
 let pedido = [];
+let total = 0;
 const menu = [
   {
     nombre: "Bandeja Paisa",
@@ -60,45 +61,56 @@ function quitarPedido(){
 //RETO 4
 function calcularCuenta(pedido){
   let iva = 0.19;
-  let subtotal;
+  let subtotal = 0;
   for(let i =0; i < pedido.length; i++){
-    console.log(pedido[i])
     for(let j =0; j < nuevoMenu.length; j++){
-      console.log(nuevoMenu[j].nombre)
       if(pedido[i] === nuevoMenu[j].nombre){
-        console,log("Pedido = menu");
-        subtotal += nuevoMenu[j].precio;
+        console.log("Pedido = menu");       
+        subtotal += Number(nuevoMenu[j].precio);  
       }
     }
   }
-  console.log(subtotal);
+  return subtotal + (subtotal*iva);
 }
 
 //RETO 5
 function pedidoAutomatico(){
   for(let i =0; i < nuevoMenu.length; i++){
-    nuevoMenu[i].id = i + 1;
+    nuevoMenu[i].nombre = `${i + 1}. ${nuevoMenu[i].nombre}`;
   }
   mostrarMenu(nuevoMenu)
-
+  let userPedido = Number(prompt('Escribe el numero de la opcion del menu deseada: '))
+  if (userPedido === 1 ){
+    tomarPedido(nuevoMenu[0].nombre);
+  } else if (userPedido === 2){
+      tomarPedido(nuevoMenu[1].nombre);
+  } else if (userPedido === 3){
+      tomarPedido(nuevoMenu[2].nombre);
+  } else {
+    console.log("Opcion invalida")
+  }
+  console.log(`\n\nPlatos del pedido: ${pedido}`)
 }
 
 
 //Reto 1
-mostrarMenu(menu);
+//mostrarMenu(menu);
 //Reto 2
 soloDisponible(menu);;
-mostrarMenu(nuevoMenu);
+//mostrarMenu(nuevoMenu);
 //Reto 3 - agregar platos
-tomarPedido("Bandeja paisa");
-tomarPedido("Limonada natural");
+//tomarPedido("Bandeja paisa");
+//tomarPedido("Limonada natural");
 tomarPedido("Ensalada César");
-console.log(`\n\nPlatos del pedido: ${pedido}`);
+//console.log(`\n\nPlatos del pedido: ${pedido}`);
 //Reto 3 - retirar platos
-quitarPedido();
+//quitarPedido();
 //Reto 4 - Calcular cuenta
-//calcularCuenta(pedido);
-pedidoAutomatico();
+total = calcularCuenta(pedido);
+console.log(`Total cuenta: ${total}`)
+//Reto 5
+//pedidoAutomatico();
+
 
 
 
