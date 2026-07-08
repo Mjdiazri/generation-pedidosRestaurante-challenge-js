@@ -63,9 +63,11 @@ function calcularCuenta(pedido){
   let iva = 0.19;
   let subtotal = 0;
   for(let i =0; i < pedido.length; i++){
+    //console.log(`for i ${pedido[i]}`)
     for(let j =0; j < nuevoMenu.length; j++){
-      if(pedido[i] === nuevoMenu[j].nombre){
-        console.log("Pedido = menu");       
+      //console.log(`for j ${nuevoMenu[j].nombre}`); 
+      if(pedido[i] === nuevoMenu[j].nombre){   
+        //console.log("Son iguales")   
         subtotal += Number(nuevoMenu[j].precio);  
       }
     }
@@ -74,22 +76,34 @@ function calcularCuenta(pedido){
 }
 
 //RETO 5
-function pedidoAutomatico(){
+
+function pedidoAutomatico(){ 
   for(let i =0; i < nuevoMenu.length; i++){
-    nuevoMenu[i].nombre = `${i + 1}. ${nuevoMenu[i].nombre}`;
+      nuevoMenu[i].nombre = `${i + 1}. ${nuevoMenu[i].nombre}`;
   }
   mostrarMenu(nuevoMenu)
-  let userPedido = Number(prompt('Escribe el numero de la opcion del menu deseada: '))
-  if (userPedido === 1 ){
-    tomarPedido(nuevoMenu[0].nombre);
-  } else if (userPedido === 2){
+  let userDecition = (prompt('-------Deseas ingresar platos al pedido (S/N)?')).toUpperCase();
+  
+  while(userDecition === "S"){
+    let userPedido = Number(prompt('Ingresa el numero del plato deseado:'))
+    if (userPedido === 1 ){
+      tomarPedido(nuevoMenu[0].nombre);
+    } else if (userPedido === 2){
       tomarPedido(nuevoMenu[1].nombre);
-  } else if (userPedido === 3){
+    } else if (userPedido === 3){
       tomarPedido(nuevoMenu[2].nombre);
-  } else {
+    } else {
     console.log("Opcion invalida")
-  }
-  console.log(`\n\nPlatos del pedido: ${pedido}`)
+    }
+    userDecition = (prompt('-------Deseas ingresar platos al pedido(S/N)? ')).toUpperCase();
+  }  
+  console.log("*******************************");
+  console.log(`Platos del pedido: ${pedido}`)
+  console.log("*******************************");
+}
+
+function agregarIndicativo(menu){
+  
 }
 
 
@@ -99,17 +113,17 @@ function pedidoAutomatico(){
 soloDisponible(menu);;
 //mostrarMenu(nuevoMenu);
 //Reto 3 - agregar platos
-//tomarPedido("Bandeja paisa");
-//tomarPedido("Limonada natural");
-tomarPedido("Ensalada César");
-//console.log(`\n\nPlatos del pedido: ${pedido}`);
+//tomarPedido("Bandeja Paisa");
+//tomarPedido("Limonada Natural");
+//tomarPedido("Ensalada César");
+//console.log(`\n\n*** Platos del pedido *** \n${pedido}`);
 //Reto 3 - retirar platos
 //quitarPedido();
 //Reto 4 - Calcular cuenta
-total = calcularCuenta(pedido);
-console.log(`Total cuenta: ${total}`)
+//total = calcularCuenta(pedido);
+//console.log(`\n\n*** Total cuenta *** \n${total} pesos`)
 //Reto 5
-//pedidoAutomatico();
+pedidoAutomatico();
 
 
 
