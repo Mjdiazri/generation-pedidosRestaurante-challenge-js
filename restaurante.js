@@ -76,7 +76,7 @@ function calcularCuenta(pedido){
 }
 
 //RETO 5
-
+/*
 function pedidoAutomatico(){ 
   for(let i =0; i < nuevoMenu.length; i++){
       nuevoMenu[i].nombre = `${i + 1}. ${nuevoMenu[i].nombre}`;
@@ -87,10 +87,13 @@ function pedidoAutomatico(){
   while(userDecition === "S"){
     let userPedido = Number(prompt('Ingresa el numero del plato deseado:'))
     if (userPedido === 1 ){
+      quitarNumeracion(0);
       tomarPedido(nuevoMenu[0].nombre);
     } else if (userPedido === 2){
+      quitarNumeracion(1);
       tomarPedido(nuevoMenu[1].nombre);
     } else if (userPedido === 3){
+      quitarNumeracion(2);
       tomarPedido(nuevoMenu[2].nombre);
     } else {
     console.log("Opcion invalida")
@@ -102,9 +105,49 @@ function pedidoAutomatico(){
   console.log("*******************************");
 }
 
-function agregarIndicativo(menu){
-  
+function quitarNumeracion(posicion){  
+  nuevoMenu[posicion].nombre = `${nuevoMenu[posicion].nombre}`;  
 }
+*/
+function pedidoAutomatico(){ 
+  for(let i =0; i < nuevoMenu.length; i++){
+      nuevoMenu[i].id = i + 1;
+  }
+  console.log("\n\n *** Menu del dia ***\n")
+  for(let i =0; i < nuevoMenu.length; i++){
+        console.log(`${nuevoMenu[i].id}. Plato: ${nuevoMenu[i].nombre} \nPrecio: ${nuevoMenu[i].precio}\n`)
+  }
+  
+  let userDecition = (prompt('-------Deseas ingresar platos al pedido (S/N)?')).toUpperCase();
+  
+  while(userDecition === "S"){
+    let userPedido = Number(prompt('Ingresa el numero del plato deseado:'))
+    if (userPedido === 1 ){
+      quitarNumeracion(0);
+      tomarPedido(nuevoMenu[0].nombre);
+    } else if (userPedido === 2){
+      quitarNumeracion(1);
+      tomarPedido(nuevoMenu[1].nombre);
+    } else if (userPedido === 3){
+      quitarNumeracion(2);
+      tomarPedido(nuevoMenu[2].nombre);
+    } else {
+    console.log("Opcion invalida")
+    }
+    userDecition = (prompt('-------Deseas ingresar platos al pedido(S/N)? ')).toUpperCase();
+  } 
+   
+  console.log("\n\n*******************************\n");
+  console.log(`Platos del pedido: ${pedido}`)
+  total = calcularCuenta(pedido);
+  console.log(`Total cuenta: ${total} pesos`)
+  console.log("\n*******************************");
+}
+
+function quitarNumeracion(posicion){  
+  nuevoMenu[posicion].nombre = `${nuevoMenu[posicion].nombre}`;  
+}
+
 
 
 //Reto 1
