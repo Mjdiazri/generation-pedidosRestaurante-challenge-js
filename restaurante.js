@@ -90,13 +90,10 @@ function pedidoAutomatico(){
   while(userDecition === "S"){
     let userPedido = Number(prompt('Ingresa el numero del plato deseado:'))
     if (userPedido === 1 ){
-      quitarNumeracion(0);
       tomarPedido(nuevoMenu[0].nombre);
     } else if (userPedido === 2){
-      quitarNumeracion(1);
       tomarPedido(nuevoMenu[1].nombre);
     } else if (userPedido === 3){
-      quitarNumeracion(2);
       tomarPedido(nuevoMenu[2].nombre);
     } else {
     console.log("Opcion invalida")
